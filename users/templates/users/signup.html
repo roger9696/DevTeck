@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}
+
+{% endblock %}
+
+
+{% block content %}
+
+{% include "nav_bar.html" %}
+
+<!-- Sign Up Form -->
+<div class="form-container">
+    <h1>Sign Up</h1>
+    <form class= 'form-eidth-validation' action='{% url 'users:signup'%}' method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="form-submit">Sign Up</button>
+    </form>
+</div>
+
+{% endblock %}

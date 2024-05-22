@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}
+{% endblock%}
+
+{% block content %}
+{% include "nav_bar.html" %}
+
+<div class="container mt-4">
+    <h1>{{ video.title }}</h1>
+    <video width="360" height="360" controls poster="{{ video.banner.url }}">
+        <source src="{{ video.video_file.url }}" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div>
+        <!-- video_page.html -->
+        <!-- Add this code below the video player -->
+        <p>Views: {{ video.views }} Dislikes: {{ video.dislikes }} Likes: {{ video.likes }}</p>
+        <p>
+        <button class="btn btn-secondary" onclick="window.location.href='{% url 'videos:like' slug=video.slug %}'">Like</button>
+        <button class="btn btn-danger" onclick="window.location.href='{% url 'videos:dislike' slug=video.slug %}'">Dislike</button>
+        <button class="btn btn-primary mr-2" onclick="playPause()">Play/Pause</button>
+        <button class="btn btn-primary mr-2" onclick="setVolume(0)">Mute</button>
+        <button class='btn btn-primary mr-2' onclick="setVolume(1)">Unmute</button>
+        <button class="btn btn-primary mr-2" onclick="shareVideo()">Share</button>
+        <button class="btn btn-danger"> 
+            <a href="{{ video.video_file.url }}" download>Download</a>
+        </button>
+        <p>{{ video.description | truncatewords:900 }}</p>
+        </p>
+    </div>
+</div>
+
+
+
+
+<script>
+    var video = document.querySelector("video");
+        var seekBar = document.getElementById("seekBar");
+
+        function playPause() {
+            if (video.paused) {
+                video.play();
+            } else {
+                video.pause();
+            }
+        }
+
+        function setVolume(volume) {
+            video.volume = volume;
+        }
+
+        // Update seek bar as video plays
+        video.addEventListener("timeupdate", function() {
+            var value = (video.currentTime / video.duration) * 100;
+            seekBar.value = value;
+        });
+
+        // Seek to a new position when the user clicks on the seek bar
+        seekBar.addEventListener("change", function() {
+            var time = (seekBar.value * video.duration) / 100;
+            video.currentTime = time;
+        });
+        function shareVideo() {
+            // Get the video URL
+            var videoUrl = "{{ video.video_file.url }}";
+    
+            // Open a share dialog
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Check out this video!',
+                    text: 'Watch this amazing video',
+                    url: videoUrl
+                })
+                .then(() => console.log('Successful share'))
+                .catch((error) => console.log('Error sharing:', error));
+            } else {
+                // If the browser doesn't support the Web Share API, fallback to a simple alert
+                alert("Your browser doesn't support sharing.");
+            }
+        }
+        
+</script>
+
+
+{% endblock %}

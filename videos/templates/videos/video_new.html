@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}
+
+{% endblock%}
+
+{% block content %}
+
+{% include "nav_bar.html" %}
+    <main>  
+        <div class="form-container"> 
+            <h1> Add New Video Here</h1>
+            <form id="new-video-form" class="form-with-validation" action="{% url 'videos:new-video' %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form }}
+                <button class="form-submit" onclick="submit">Add Video</button>
+            </form>
+        </div>
+    </main>
+
+{% endblock %}

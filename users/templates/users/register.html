@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}
+
+{% endblock %}
+
+
+{% block content %}
+   {% include "nav_bar.html" %}
+   {% for video in videos reversed %}
+    <main>
+        <section class="video-grid">
+            
+                <div class="video-preview">
+                    
+                    <div class="poster-row">
+                        
+                            <video class="poster" controls poster="{{ video.poster.url }}">
+                                <source src="{{ video.video_file.url }}" type="video/mp4">
+                            </video>
+                        </div>
+                        <div class="video-info-grid">
+                            <div class="channel-picture">
+                                <img class="profile-picture" src="{{ user.profile.picture.url }}" >
+                            </div>
+                            <div class="video-info">
+                                <p class="video-stats">
+                                    views:{{ video.views }} likes:{{ video.dislikes }} dislikes:{{ video.likes }} 
+                                    <button class="btn-like" onclick="window.location.href='{% url 'videos:like' slug=video.slug %}'">👍</button>
+                                    <button class="btn-like" onclick="window.location.href='{% url 'videos:dislike' slug=video.slug %}'">👎</button>
+                                    <button class="download-btn">
+                                        <a href="{{ video.video_file.url }}" download>Download</a>
+                                    </button>
+                                    <button class="share-btn">share</button>
+                                </p>
+                                <p class="video-auther">
+                                    {{video.user}} and {{video.upload_date}}
+                                </p>
+                                <p video-title>
+                                    {{ video.title }} 
+                                </p>
+                            </div>
+                        
+                    </div>
+                        
+                </div> 
+              
+        </section>
+    </main>
+    {% endfor %}
+{% endblock %}

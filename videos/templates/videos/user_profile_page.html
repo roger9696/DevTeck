@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}
+
+{% endblock %}
+
+{% block content %}
+    {% include "nav_bar.html" %}
+    
+    <div class="container mt-4">
+        <h1>User Profile</h1>
+        {% if profile %}
+            <div class="row">
+                <div class="col-md-6">
+                    <p>Username: {{ request.user.username }}</p>
+                    <p>Email: {{ request.user.email }}</p>
+                    <p>Age: {{ profile.age }}</p>
+                    <p>Gender: {{ profile.gender }}</p>
+                    <p>Bio: {{ profile.bio }}</p>
+                    <!-- Add other profile fields here -->
+                    <a href="{% url 'videos:edit_profile' %}" class="btn btn-primary">Edit Profile</a>
+                </div>
+                <div class="col-md-6 text-center">
+                    <img src="{{ request.user.profile_picture.url }}" alt="Profile Picture"  style="max-width: 100%;">
+                    <p>{{ request.user.username }}</p>
+                    <!-- Delete Account Button -->
+                    <button class="btn btn-danger" data-toggle="modal" data-target="#deleteAccountModal">Delete Account</button>
+                </div>
+            </div>
+
+
+
+          
+
+
+            
+            <!-- Delete Account Modal -->
+            <div class="modal fade" id="deleteAccountModal" tabindex="-1" role="dialog" aria-labelledby="deleteAccountModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="deleteAccountModalLabel">Confirm Deletion</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Are you sure you want to delete your account?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                            <a href="{% url 'videos:delete_account' %}" class="btn btn-danger">Yes, Delete Account</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        {% else %}
+            <p>No profile found.</p>
+        {% endif %}
+    </div>
+{% endblock %}

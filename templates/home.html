@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+
+
+{% block title %}
+
+{% include "nav_bar.html"%}
+
+<h1>Home Page</h1>
+{% endblock title%}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<p>Check out my <a href="about/">About</a>Page</p>
+<p>Check out my <a href="videos/">videos</a>Page</p>
+
+
+
+
+{% endblock content %}

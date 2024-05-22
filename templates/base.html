@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {% block title %}  
+  <title></title>
+   {% endblock title%}
+   <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+</head>
+
+
+
+<body class="{% if dark_mode %}dark-mode{% endif %}">
+
+    {% block content %}
+
+    <script>
+        // Function to toggle dark mode
+        function toggleDarkMode() {
+            var darkModeToggle = document.getElementById("dark-mode-toggle");
+            var isDarkMode = JSON.parse(localStorage.getItem("darkMode"));
+        
+            if (isDarkMode) {
+                document.body.classList.add("dark-mode");
+                darkModeToggle.checked = true;
+            } else {
+                document.body.classList.remove("dark-mode");
+                darkModeToggle.checked = false;
+            }
+        }
+      </script>
+    {% endblock content %}
+
+  <main>
+    
+  </main>
+  
+  
+</body>
+</html>

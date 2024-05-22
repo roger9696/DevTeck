@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}
+
+{% endblock %}
+
+{% block content %}
+
+{% include "nav_bar.html" %}
+
+<!-- Login Form -->
+<div class="form-container">
+    <h1>Login</h1>
+    <form class= 'form-eidth-validation' action='{% url 'users:login' %}' method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        {% if request.GET.next %}
+            <input type="hidden" name="text" value="{{ request.GET.next }}"/>
+        {% endif %}
+        <button type="submit" class="btn btn-primary">Login</button>
+    </form>
+    <p>Don't have an account? <a href="{% url 'users:signup' %}">Sign Up</a></p>
+</div>
+
+{% endblock %}

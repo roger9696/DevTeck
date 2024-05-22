@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% load static %}
+{{ video.title }} 
+{% block title %}
+    
+{% endblock %}
+
+{% block content %}
+{% include "nav_bar.html" %}
+<div class="container mt-4">
+    <h1 class="text-center"><p>Search Results:</p></h1>
+    <div class="row justify-content-center"> <!-- Center the row -->
+        {% if videos %}
+            {% for video in videos %}
+            <div class="col-md-6 mb-4 text-center"> <!-- Center the column content -->
+                <div class="embed-responsive embed-responsive-16by9">
+                    {% if user.is_authenticated %}
+                    <video width="640" height="360" controls  poster="{{ video.poster.url }}">
+                    {% else %}
+                    <video width="640" height="360"   poster="{{ video.poster.url }}">
+                    {% endif %}
+                        <source src="{{ video.video_file.url }}" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="text-center mt-2">
+                    <h5> Watch:➡{{ video.title }} 
+                        {% if user.is_authenticated %}
+                            <a href="{% url 'videos:page' slug=video.slug %}">
+                                {{ video.title }}
+                            </a>
+                        {% else %}
+                            <a href="{% url 'users:login' %}">Login to Watch</a>
+                        {% endif %}
+                    </h5>
+                    <p>
+                        Views: {{ video.views }} Dislikes: {{ video.dislikes }} Likes: {{ video.likes }}
+                        <button class="btn btn-secondary" onclick="window.location.href='{% url 'videos:like' slug=video.slug %}'">👍</button>
+                        <button class="btn btn-danger" onclick="window.location.href='{% url 'videos:dislike' slug=video.slug %}'">👎</button>
+                        {% if user.is_authenticated %}
+                        <button class="btn btn-danger"> 
+                            <a href="{{ video.video_file.url }}" download>Download</a>
+                        </button>
+                        {% else %}
+                        <button class="btn btn-danger">
+                            <a href="{% url 'users:login' %}">Login to Download</a>
+                        </button>
+                        {% endif %}
+                    </p>
+                    <p>Uploaded: {{ video.upload_date }} by: {{ video.user }} {{ video.description | truncatewords:20 }}</p>    
+                </div>
+            </div>
+            {% endfor %}
+        {% else %}
+            <p class="text-center">No results found.</p>
+        {% endif %}
+    </div>
+</div>
+
+
+
+{% endblock %}

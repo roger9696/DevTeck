@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+<!-- Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="{% static 'js/script.js' %}"></script>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="{% url 'videos:test' %}">Your Website</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <button class="btn btn-primary mr-2" aria-label="Home Page" title="Home Page">
+                    <a class="nav-link" href="/">Home</a>
+                </button>
+            </li>
+            <li class="nav-item">
+                <button class="btn btn-primary mr-2" aria-label="About Page" title="About Page">
+                    <a class="nav-link" href="/about">About</a>
+                </button>
+            </li>
+            <li class="nav-item">
+                <button class="btn btn-primary mr-2" aria-label="Contact Page" title="Contact Page">
+                    <a class="nav-link" href="/contact">Contact</a>
+                </button>
+            </li>
+
+            {% if user.is_authenticated %}
+            <li class="nav-item">
+                <button class="btn btn-primary mr-2" aria-label="Upload Page" title="Upload Page">
+                    <a class="nav-link" href="{% url 'videos:new-video' %}">Upload</a>
+                </button>
+            </li>
+            <li class="nav-item">
+                <button class="btn btn-primary mr-2" aria-label="Profile Page" title="Profile Page">
+                    <a class="nav-link" href="{% url 'videos:user_profile' %}">Profile</a>
+                </button> 
+            </li>
+            <li class="nav-item">
+                <button class="btn btn-primary mr-2" aria-label="Settings Page" title="Settings Page">
+                    <a class="nav-link" href="{% url 'videos:settings' %}">Settings</a>
+                </button>
+            </li>
+            <li class="nav-item">
+                <form class="btn btn-primary mr-2" action="{% url 'users:logout' %}" method="post">
+                    {% csrf_token %}
+                    <button class="btn btn-primary mr-2" aria-label="User Logout" title="User Logout">Logout</button>
+                </form>
+            </li>
+            {% else %}
+            <li class="nav-item">
+                <button class="btn btn-primary mr-2" aria-label="Signup Page" title="Signup Page">
+                    <a class="btn btn-primary mr-2" href="{% url 'users:signup' %}">Sign Up</a>
+                </button>
+            </li>
+            <li class="nav-item">
+                <button class="btn btn-primary mr-2" aria-label="Login Page" title="Login Page">
+                    <a class="btn btn-primary mr-2" href="{% url 'users:login' %}">Login</a>
+                </button>
+            </li>
+            {% endif %}
+        </ul>
+
+        <ul class="navbar-nav ml-auto">
+
+            
+            <li class="nav-item">
+                <form class="form-inline my-2 my-lg-0" action="{% url 'videos:search' %}" method="get">
+                    <input class="form-control mr-sm-2" type="search" name="q" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </li>
+
+        </ul>
+        
+        <ul class="navbar-nav ml-auto">
+            {% if user.is_authenticated %}
+            <li class="nav-item">
+                <a href="{% url 'videos:user_profile' %}">
+                    <img src="{% if user.profile.picture %}{{ user.profile.picture.url }}{% else %}{% static 'img/default_profile.jpg' %}{% endif %}" alt="Profile Picture" class="rounded-circle" style="width: 65px; height: 65px; margin-right: 5px;">
+                </a>
+            {% endif %}
+        </ul>
+    </div>
+</nav>
+
+{% endblock content %}

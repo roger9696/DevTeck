@@ -1,0 +1,370 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    background-color: black;
+    color: whitesmoke;
+    font-size: 3rem;
+}
+
+nav {
+    padding: 1rem;
+    background-color: #44B78B;
+    color: white;
+    font-size: 2.5rem;
+}
+
+main {
+    
+    padding: 1;
+}
+
+section {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    display: flex;
+    flex-flow: column;
+    gap: 1rem;
+}
+
+h1,
+h2 {
+    font-size: 2.5rem;
+}
+
+p {
+    font-size: 1rem;
+}
+
+a {
+    text-decoration: none;
+    color: #81dbb8;
+}
+
+a:hover {
+    opacity: .85;
+}
+
+.banner {
+    display: block;
+    width: 100%;
+    max-width: 800px;
+}
+
+.form-with-validation {
+    max-width: 600px;
+    font-size: 1rem;
+    padding: 1rem;
+    display: flex;
+    flex-flow: column;
+    gap: 1rem;
+}
+
+.form-with-validation div {
+    display: flex;
+    flex-flow: column;
+    gap: 0.5rem;
+}
+
+.form-with-validation input {
+    padding: 0.25rem;
+    max-width: 300px;
+}
+
+.form-submit {
+    padding: 0.5rem;
+    border-radius: 10px;
+    width: 125px;
+}
+
+.helptext {
+    font-size: 1rem;
+    margin-left: 1rem;
+}
+
+.helptext ul {
+    list-style-type: none;
+}
+
+.errorlist {
+    color: #F00;
+    margin-left: 2rem;
+}
+
+.errorlist li::marker {
+    content: '🚨 ';
+}
+
+
+.logout {
+    display: inline-block;
+}
+
+.logout-button {
+    font-size: 2.5rem;
+    background-color: rgb(0, 0, 0, 0);
+    border: none;
+}
+
+.logout-button:hover {
+    opacity: .85;
+}
+
+/* Add your custom styles here */
+
+/* Example style for the form container */
+.form-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+/* Example style for form fields */
+.form-field {
+    margin-bottom: 20px;
+}
+
+/* Example style for submit button */
+.form-submit {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Example style for submit button on hover */
+.form-submit:hover {
+    background-color: #0056b3;
+}
+
+
+/* Style for video container */
+.video-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-top: 50px; /* Adjust margin as needed */
+}
+
+.video-container video {
+    width: 100%; /* Ensure the video fills its container */
+    max-width: 800px; /* Limit the maximum width of the video */
+}
+
+.video-container button,
+.video-container input[type="range"],
+.video-container p {
+    margin-top: 10px; /* Add spacing between elements */
+}
+
+/* Style for video title */
+h1 {
+    font-size: 24px;
+    color: #333;
+}
+
+/* Style for video player */
+video {
+    width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+/* Style for video description */
+p {
+    font-size: 16px;
+    color: #666;
+}
+
+/* Style for control buttons */
+button {
+    margin-right: 10px;
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Style for seek bar */
+input[type="range"] {
+    width: 100%;
+    height: 10px;
+    margin-bottom: 20px;
+}
+
+/* Style for download link */
+a.download-link {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+a.download-link:hover {
+    background-color: #218838;
+}
+.container {
+	margin: 50px auto;
+	max-width: 500px;
+}
+
+/* Dark mode styles */
+.dark-mode {
+    background-color: #333;
+    color: #fff;
+}
+
+/* Additional styles for the settings page */
+.container {
+    max-width: 800px;
+    margin: auto;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.btn {
+    cursor: pointer;
+}
+
+/* Customize dark mode switch appearance */
+.custom-control-input:checked~.custom-control-label::before {
+    background-color: #007bff;
+}
+
+.custom-control-input:checked~.custom-control-label::after {
+    background-color: #fff;
+}
+
+:root {
+    --background-color: #111;
+    --text-color: #fff;
+    /* Add more dark mode styles here */
+}
+
+body.dark-mode {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    /* Apply more dark mode styles to other elements */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.poster {
+    width: 10px;
+    height: 100px;
+}
+
+body {
+    /* This style below will be inherited */
+    font-family: Roboto, Arial;
+    margin: 0;
+    padding-top: 85px;
+    padding-left: 30px;
+    padding-right: 24px;
+    background-color: rgb(248, 248, 248);
+  }
+
+.btn-like,
+.download-btn {
+    margin-right: 10px;
+}
+.share-btn {
+    margin-right: 10pz;
+}
+
+.video-title {
+    margin-top: 0;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    margin-bottom: 20px;
+}
+
+.video-info-grid {
+    display: grid;
+    grid-template-columns: 65px 1fr ;
+}
+.profile-picture {
+    width: 45px;
+    border-radius: 40px;
+}
+
+.poster-row {
+    margin-bottom: 100px;
+    position: relative;
+}
+
+.video-auther,
+.video-stats {
+    font-size: 16px;
+}
+
+.video-auther {
+    margin-bottom: 4px;
+}
+
+.video-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    column-gap: 20px;
+    row-gap: 40px;
+}
+
+
+@media (max-width: 750px) {
+    .video-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+}
+  
+@media (min-width: 751px) and (max-width: 999px) {
+  .video-grid {
+    grid-template-columns: 1fr 1fr;
+   }
+}
+
+@media (min-width: 1000px) {
+  .video-grid {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+   }
+}
